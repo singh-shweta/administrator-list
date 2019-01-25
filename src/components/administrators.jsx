@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Loader from "react-loader-spinner";
 import AdminTable from "./common/adminTable";
 import CounterBar from "./counterBar";
 import { connect } from "react-redux";
@@ -41,7 +42,11 @@ class AdministratorsComponent extends Component {
   renderPage() {
     const { isLoading, admins } = this.props;
     if (isLoading) {
-      return <p>Loading.........</p>;
+      return (
+        <center>
+          <Loader type="ThreeDots" color="#A9A9A9" height="100" width="100" />
+        </center>
+      );
     }
     return (
       <div>
