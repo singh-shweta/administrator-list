@@ -12,6 +12,8 @@ const ModalBody = props => {
         name="adminName"
         onChange={props.onChange}
         data={props.data}
+        onBlur={props.onBlur}
+        errors={props.errors}
       />
       <MyFormGroup
         title="Email"
@@ -20,6 +22,8 @@ const ModalBody = props => {
         name="email"
         onChange={props.onChange}
         data={props.data}
+        onBlur={props.onBlur}
+        errors={props.errors}
       />
       <FormGroup controlId="adminRole">
         <ControlLabel>Administrator Role</ControlLabel>

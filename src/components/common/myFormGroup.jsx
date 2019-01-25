@@ -1,6 +1,15 @@
 import React from "react";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
-const MyFormGroup = ({ id, title, type, onChange, data, name }) => {
+const MyFormGroup = ({
+  id,
+  title,
+  type,
+  onChange,
+  data,
+  name,
+  onBlur,
+  errors
+}) => {
   return (
     <FormGroup controlId={id}>
       <ControlLabel>{title}</ControlLabel>
@@ -8,9 +17,12 @@ const MyFormGroup = ({ id, title, type, onChange, data, name }) => {
         type={type}
         onChange={onChange}
         value={data[id]}
+        onBlur={onBlur}
         name={name}
       />
-      <FormControl.Feedback />
+      {errors && errors[name] ? (
+        <div className="alert alert-danger">{errors[name]}</div>
+      ) : null}
     </FormGroup>
   );
 };

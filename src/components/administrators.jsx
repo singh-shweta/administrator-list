@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import AdminTable from "./adminTable";
+import AdminTable from "./common/adminTable";
 import CounterBar from "./counterBar";
 import { connect } from "react-redux";
 import {
@@ -11,11 +11,25 @@ import {
 import NewAdminForm from "./newAdminForm";
 
 class AdministratorsComponent extends Component {
-  newAdmin = {
-    name: null,
-    email: null,
-    role: null
-  };
+  columns = [
+    {
+      id: "adminName",
+      label: "Name",
+      content: item => <i>{item.adminName}</i>
+    },
+    {
+      id: "email",
+      label: "Email"
+    },
+    {
+      id: "role",
+      label: "Role"
+    },
+    {
+      id: "lastLogin",
+      label: "Last Login"
+    }
+  ];
   componentDidMount() {
     this.props.getAdmins();
   }
@@ -32,12 +46,14 @@ class AdministratorsComponent extends Component {
     return (
       <div>
         <CounterBar count={admins.length} addNewAdmin={this.handleNewAdmin} />
-        <NewAdminForm
-          showModal={this.props.showModal}
-          onHide={this.handleCloseModal}
-          onSubmit={this.handleSaveAdmin}
-        />
-        <AdminTable admins={admins} />
+        {this.props.showModal && (
+          <NewAdminForm
+            showModal={this.props.showModal}
+            onHide={this.handleCloseModal}
+            onSubmit={this.handleSaveAdmin}
+          />
+        )}
+        <AdminTable admins={admins} columns={this.columns} />
       </div>
     );
   }
