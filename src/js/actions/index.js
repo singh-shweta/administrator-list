@@ -26,7 +26,8 @@ export function hideAdminModal() {
   return {
     type: "HIDE_ADMIN_MODAL",
     payload: {
-      showModal: false
+      showModal: false,
+      activeAdmin: {}
     }
   };
 }
@@ -68,6 +69,26 @@ export function dataLoadDone() {
     type: "LOAD_DONE",
     payload: {
       isLoading: false
+    }
+  };
+}
+
+export function setActiveAdmin(admin) {
+  return dispatch => {
+    return setActiveAdminStart(dispatch, admin);
+  };
+}
+
+export function setActiveAdminStart(dispatch, admin) {
+  dispatch(showAdminModal());
+  dispatch(setActiveAdminDone(admin));
+}
+
+export function setActiveAdminDone(admin) {
+  return {
+    type: "SET_ACTIVE_ADMIN",
+    payload: {
+      activeAdmin: admin
     }
   };
 }

@@ -5,10 +5,15 @@ import ModalBody from "./modalBody";
 class NewAdminForm extends Component {
   constructor(props) {
     super(props);
+    const adminObj = {
+      role: "Product"
+    };
     this.state = {
-      admin: {
-        role: "Product 1"
-      },
+      admin: props.activeAdmin
+        ? Object.keys(props.activeAdmin).length
+          ? props.activeAdmin
+          : adminObj
+        : adminObj,
       errors: {}
     };
   }

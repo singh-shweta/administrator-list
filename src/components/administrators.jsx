@@ -1,13 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import Loader from "react-loader-spinner";
 import AdminTable from "./common/adminTable";
 import CounterBar from "./counterBar";
-import { connect } from "react-redux";
 import {
   populateAdmins,
   showAdminModal,
   hideAdminModal,
-  addNewAdmin
+  addNewAdmin,
+  setActiveAdmin
 } from "../js/actions/index";
 import NewAdminForm from "./newAdminForm";
 
@@ -16,7 +18,9 @@ class AdministratorsComponent extends Component {
     {
       id: "adminName",
       label: "Name",
-      content: item => <i>{item.adminName}</i>
+      content: item => (
+        <p onClick={() => this.editLink(item)}>{item.adminName}</p>
+      )
     },
     {
       id: "email",
@@ -39,6 +43,10 @@ class AdministratorsComponent extends Component {
     this.props.addAdmin(newAdmin);
   };
 
+  editLink = admin => {
+    this.props.setActiveAdmin(admin);
+  };
+
   renderPage() {
     const { isLoading, admins } = this.props;
     if (isLoading) {
@@ -56,6 +64,7 @@ class AdministratorsComponent extends Component {
             showModal={this.props.showModal}
             onHide={this.handleCloseModal}
             onSubmit={this.handleSaveAdmin}
+            activeAdmin={this.props.activeAdmin}
           />
         )}
         <AdminTable admins={admins} columns={this.columns} />
@@ -79,7 +88,8 @@ const mapStateToProps = state => {
   return {
     admins: state.admins,
     isLoading: state.isLoading,
-    showModal: state.showModal
+    showModal: state.showModal,
+    activeAdmin: state.activeAdmin
   };
 };
 
@@ -89,7 +99,8 @@ const Administrators = connect(
     getAdmins: populateAdmins,
     showAdminModal,
     hideAdminModal,
-    addAdmin: addNewAdmin
+    addAdmin: addNewAdmin,
+    setActiveAdmin
   }
 )(AdministratorsComponent);
 

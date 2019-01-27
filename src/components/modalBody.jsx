@@ -8,7 +8,7 @@ const ModalBody = props => {
       <MyFormGroup
         title="Name"
         type="text"
-        id="name"
+        id="adminName"
         name="adminName"
         onChange={props.onChange}
         data={props.data}
@@ -29,20 +29,20 @@ const ModalBody = props => {
         <ControlLabel>Administrator Role</ControlLabel>
         <Radio
           name="role"
-          value="Product 1"
-          checked={props.data.role === "Product 1"}
+          value="Druva Cloud"
+          checked={props.data.role === "Druva Cloud"}
           onChange={props.onChange}
         >
-          Product 1 Administrator
+          Druva Cloud Administrator
         </Radio>
         <Radio
           name="role"
           inline
-          value="Product 2"
-          checked={props.data.role === "Product 2"}
+          value="Product"
+          checked={props.data.role === "Product"}
           onChange={props.onChange}
         >
-          Product 2 Administrator
+          Product Administrator
         </Radio>
       </FormGroup>
       <Modal.Footer>
