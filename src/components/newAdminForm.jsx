@@ -96,6 +96,7 @@ class NewAdminForm extends Component {
             errors={this.state.errors}
             onSubmit={this.handingOverToSubmit}
             onBlur={this.validateValue}
+            onDelete={() => this.props.onDelete(this.state.admin)}
           />
         </Modal>
       </div>

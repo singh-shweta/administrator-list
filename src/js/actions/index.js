@@ -92,3 +92,19 @@ export function setActiveAdminDone(admin) {
     }
   };
 }
+export function deleteAdmin() {
+  return dispatch => {
+    return deleteActiveAdminStart(dispatch);
+  };
+}
+
+export function deleteActiveAdminAction() {
+  return {
+    type: "DELETE_ACTIVE_ADMIN"
+  };
+}
+
+export function deleteActiveAdminStart(dispatch) {
+  dispatch(deleteActiveAdminAction());
+  dispatch(hideAdminModal());
+}

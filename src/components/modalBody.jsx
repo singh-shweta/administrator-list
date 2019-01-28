@@ -49,6 +49,9 @@ const ModalBody = props => {
         <Button type="submit" bsStyle="primary" onClick={props.onSubmit}>
           Save
         </Button>
+        <Button type="submit" bsStyle="secondary" onClick={props.onDelete}>
+          Delete
+        </Button>
       </Modal.Footer>
     </Modal.Body>
   );

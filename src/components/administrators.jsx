@@ -9,7 +9,8 @@ import {
   showAdminModal,
   hideAdminModal,
   addNewAdmin,
-  setActiveAdmin
+  setActiveAdmin,
+  deleteAdmin
 } from "../js/actions/index";
 import NewAdminForm from "./newAdminForm";
 
@@ -19,7 +20,7 @@ class AdministratorsComponent extends Component {
       id: "adminName",
       label: "Name",
       content: item => (
-        <p onClick={() => this.editLink(item)}>{item.adminName}</p>
+        <a onClick={() => this.editLink(item)}>{item.adminName}</a>
       )
     },
     {
@@ -65,6 +66,7 @@ class AdministratorsComponent extends Component {
             onHide={this.handleCloseModal}
             onSubmit={this.handleSaveAdmin}
             activeAdmin={this.props.activeAdmin}
+            onDelete={this.props.deleteAdmin}
           />
         )}
         <AdminTable admins={admins} columns={this.columns} />
@@ -100,7 +102,8 @@ const Administrators = connect(
     showAdminModal,
     hideAdminModal,
     addAdmin: addNewAdmin,
-    setActiveAdmin
+    setActiveAdmin,
+    deleteAdmin
   }
 )(AdministratorsComponent);
 
